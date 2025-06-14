@@ -8,7 +8,20 @@ const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
 const AWS = require('aws-sdk');
 
+// --- AWS Configuration ---
+AWS.config.update({
+    region: 'ap-south-1', // IMPORTANT: This region must match where your DynamoDB tables are located.
+    accessKeyId: 'AKIAVEP3EDM5K3LA5J47', // Replace with your actual Access Key ID (securely!)
+    secretAccessKey: 'YfIszgolrWKUglxC6Q85HSb3V0qhDsa00yv6jcIP' // Replace with your actual Secret Access Key (securely!)
+});
 
+const dynamodb = new AWS.DynamoDB.DocumentClient();
+
+// --- Constants ---
+const SECRET_KEY = 'jwt_secret_key_54742384238423_ahfgrdtTFHHYJNMP[]yigfgfjdfjd=-+&+pqiel;,,dkvntegdv/cv,mbkzmbzbhsbha#&$^&(#_enD';
+const PORT = 5000;
+const USER_TABLE_NAME = 'Usertable'; // Your existing user table
+const TEST_ATTEMPTS_TABLE_NAME = 'TestAttempts'; // New table for test results
 
 
 const NUMBER_OF_QUESTIONS_PER_TEST = 25; // Define the number of questions per test
