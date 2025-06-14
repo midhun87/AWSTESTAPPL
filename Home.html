@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AWS Mock Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #f0f9ff, #e0f2fe); /* Light blue to very light blue */
+        }
+        .dashboard-container {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem 1.5rem;
+            max-width: 900px;
+            width: 95%;
+            min-height: 80vh;
+        }
+        .card {
+            background-color: #f8fafc; /* Very light grey-blue */
+            border-radius: 10px;
+            padding: 1.25rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+        }
+        .pass-status {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .fail-status {
+            background-color: #fee2e2;
+            color: #991b1b;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .write-test-button {
+            background-color: #1e40af; /* Darker blue for action */
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+            box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
+        }
+        .write-test-button:hover {
+            background-color: #1e3a8a;
+            transform: translateY(-2px);
+        }
+        .logout-button {
+            background-color: #dc2626; /* Red for logout */
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .logout-button:hover {
+            background-color: #b91c1c;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+    <div class="dashboard-container">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Welcome, <span id="usernameDisplay"></span>!</h1>
+            <button id="logoutButton" class="logout-button">Logout</button>
+        </div>
+
+        <div class="mb-8 text-center">
+            <p class="text-lg text-gray-700 mb-4">Ready for your next challenge?</p>
+            <button id="writeTestButton" class="write-test-button">
+                Write New Test
+            </button>
+        </div>
+
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b-2 pb-2 border-blue-200">Your Test History</h2>
+        <div id="testHistoryContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Test history cards will be loaded here -->
+            <p id="noHistoryMessage" class="text-gray-600 col-span-full text-center hidden">No test attempts yet. Start your first test!</p>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = window.location.origin; // Dynamically get base URL
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const testHistoryContainer = document.getElementById('testHistoryContainer');
+            const noHistoryMessage = document.getElementById('noHistoryMessage');
+            const writeTestButton = document.getElementById('writeTestButton');
+            const logoutButton = document.getElementById('logoutButton');
+
+            const jwtToken = localStorage.getItem('jwtToken');
+            const username = localStorage.getItem('username');
+            const userId = localStorage.getItem('userId');
+
+            // --- Authentication Check ---
+            if (!jwtToken || !username || !userId) {
+                alert('You are not logged in. Please log in to access the dashboard.');
+                window.location.href = '/Login';
+                return;
+            }
+
+            usernameDisplay.textContent = username;
+
+            // --- Fetch Test History ---
+            const fetchTestHistory = async () => {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/get-test-history`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${jwtToken}`
+                        }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.history.length === 0) {
+                            noHistoryMessage.classList.remove('hidden');
+                        } else {
+                            noHistoryMessage.classList.add('hidden');
+                            renderTestHistory(data.history);
+                        }
+                    } else if (response.status === 401) {
+                        alert('Your session has expired. Please log in again.');
+                        localStorage.clear();
+                        window.location.href = '/Login';
+                    } else {
+                        console.error('Failed to fetch test history:', response.statusText);
+                        testHistoryContainer.innerHTML = `<p class="text-red-600 col-span-full text-center">Failed to load test history. Please try again later.</p>`;
+                    }
+                } catch (error) {
+                    console.error('Network error fetching test history:', error);
+                    testHistoryContainer.innerHTML = `<p class="text-red-600 col-span-full text-center">Network error. Could not connect to the server.</p>`;
+                }
+            };
+
+            // --- Render Test History Cards ---
+            const renderTestHistory = (history) => {
+                testHistoryContainer.innerHTML = ''; // Clear previous history
+
+                history.forEach(attempt => {
+                    const attemptDate = new Date(attempt.AttemptDate).toLocaleString();
+                    const statusClass = attempt.IsPass ? 'pass-status' : 'fail-status';
+                    const statusText = attempt.IsPass ? 'Passed' : 'Failed';
+
+                    const card = `
+                        <div class="card">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="text-lg font-semibold text-gray-800">Test on ${attemptDate}</h3>
+                                <span class="${statusClass}">${statusText}</span>
+                            </div>
+                            <p class="text-gray-700 mb-2">Score: <span class="font-bold">${attempt.Score} / ${attempt.TotalQuestions}</span></p>
+                            ${attempt.IsPass ? `<button data-attempt-id="${attempt.AttemptId}" data-score="${attempt.Score}" data-username="${attempt.Username}" class="download-certificate-button w-full mt-3 bg-indigo-600 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors">Download Certificate</button>` : ''}
+                        </div>
+                    `;
+                    testHistoryContainer.insertAdjacentHTML('beforeend', card);
+                });
+
+                // Add event listeners for certificate buttons after they are rendered
+                document.querySelectorAll('.download-certificate-button').forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        const score = event.target.dataset.score;
+                        const user = event.target.dataset.username;
+                        // Pass data to certificate page via localStorage for simplicity
+                        localStorage.setItem('certificateScore', score);
+                        localStorage.setItem('certificateUserName', user);
+                        window.location.href = `/certificate`;
+                    });
+                });
+            };
+
+            // --- Event Listeners ---
+            writeTestButton.addEventListener('click', () => {
+                window.location.href = '/test'; // Redirect to test page
+            });
+
+            logoutButton.addEventListener('click', () => {
+                localStorage.clear(); // Clear all stored user data
+                alert('You have been logged out.');
+                window.location.href = '/Login'; // Redirect to login page
+            });
+
+            // Initial fetch
+            fetchTestHistory();
+        });
+    </script>
+</body>
+</html>

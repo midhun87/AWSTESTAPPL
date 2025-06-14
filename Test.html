@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Cloud Practitioner Mock Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for animations and specific elements */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap'); /* For certificate signature */
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevent scrolling during test */
+            background: linear-gradient(to bottom right, #e0f2f7, #c1e4f4); /* Lighter blue gradient */
+        }
+
+        /* Fade-in animation for messages */
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Overlay for full screen exit message */
+        .fullscreen-exit-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .fullscreen-exit-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .fullscreen-exit-modal {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        /* Question Navigation Colors */
+        .question-number-btn {
+            background-color: #cbd5e1; /* Default: Not answered */
+            color: #4a5568;
+        }
+        .question-number-btn.answered {
+            background-color: #90cdf4; /* Answered: Light blue */
+            color: #2b6cb0;
+        }
+        .question-number-btn.marked-for-review {
+            background-color: #f6ad55; /* Marked for Review: Orange */
+            color: #8b5420;
+        }
+        .question-number-btn.current {
+            background-color: #3182ce; /* Current question: Deeper blue */
+            color: white;
+            font-weight: bold;
+            border: 2px solid #a0aec0; /* Add a slight border for current */
+        }
+        /* Legend color swatches */
+        .color-swatch {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            vertical-align: middle;
+            margin-right: 6px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .swatch-unanswered { background-color: #cbd5e1; }
+        .swatch-answered { background-color: #90cdf4; }
+        .swatch-marked { background-color: #f6ad55; }
+        .swatch-current { background-color: #3182ce; }
+
+        /* Custom alert/message box styles */
+        .custom-message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 1001;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .custom-message-box.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .custom-message-box .message-content {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .custom-message-box .close-btn {
+            background-color: #3b82f6;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .custom-message-box .close-btn:hover {
+            background-color: #2563eb;
+        }
+
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-2xl p-8 max-w-5xl w-full flex flex-col md:flex-row">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center md:hidden w-full">
+            AWS Cloud Practitioner Mock Test
+        </h1>
+
+        <div id="start-screen" class="w-full flex flex-col items-center justify-center p-8 text-center">
+            <h2 class="text-4xl font-extrabold text-blue-700 mb-6 animate-fade-in">
+                Welcome to the AWS Mock Test!
+            </h2>
+            <p class="text-gray-700 text-lg mb-8">
+                Prepare for your certification by taking this practice exam.
+            </p>
+            <div class="w-full max-w-md mb-8">
+                <label for="user-name-input" class="block text-gray-700 text-sm font-bold mb-2">
+                    Enter Your Name:
+                </label>
+                <input
+                    type="text"
+                    id="user-name-input"
+                    class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500"
+                    placeholder="e.g., John Doe"
+                    aria-label="Your Name"
+                />
+            </div>
+            <button
+                id="start-quiz-button"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+                Start Quiz
+            </button>
+        </div>
+
+
+        <div id="quiz-container" class="flex-grow flex flex-col md:flex-row hidden">
+            <div class="md:w-2/3 p-4 border-r md:border-b-0 border-b border-gray-200">
+                <div class="mb-6">
+                    <p class="text-sm text-gray-600 mb-2">
+                        Question <span id="current-question-number"></span> of <span id="total-questions"></span>
+                    </p>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full transition-all duration-500 ease-out" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <h2 id="question-text" class="text-xl font-semibold text-gray-800 mb-6"></h2>
+
+                <div id="options-container" class="space-y-4 mb-6">
+                    </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <button id="clear-response-button" class="py-2 px-4 rounded-lg font-semibold bg-red-100 text-red-700 border border-red-300 hover:bg-red-200 transition-colors shadow-sm">
+                        Clear Response
+                    </button>
+                    <button id="mark-for-review-button" class="py-2 px-4 rounded-lg font-semibold bg-yellow-100 text-yellow-700 border border-yellow-300 hover:bg-yellow-200 transition-colors shadow-sm">
+                        Mark for Review
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <button id="prev-button" class="py-3 px-6 rounded-lg text-lg font-semibold transition-all duration-300 transform shadow-md bg-gray-300 text-gray-600 cursor-not-allowed" disabled>
+                        Previous
+                    </button>
+                    <button id="next-button" class="py-3 px-6 rounded-lg text-lg font-semibold transition-all duration-300 transform shadow-md bg-blue-600 text-white hover:bg-blue-700 hover:scale-105" disabled>
+                        Next Question
+                    </button>
+                </div>
+            </div>
+
+            <div class="md:w-1/3 p-4 flex flex-col items-center">
+                <h3 class="text-lg font-bold text-gray-700 mb-4">Question Progress</h3>
+                <div id="question-navigation-grid" class="grid grid-cols-4 gap-2 w-full max-w-xs">
+                    </div>
+                <div class="mt-6 p-3 bg-gray-100 rounded-lg text-sm text-gray-700 w-full max-w-xs">
+                    <p class="font-semibold mb-2">Legend:</p>
+                    <div class="flex items-center mb-1">
+                        <span class="color-swatch swatch-current"></span> Current Question
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <span class="color-swatch swatch-answered"></span> Answered
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <span class="color-swatch swatch-marked"></span> Marked for Review
+                    </div>
+                    <div class="flex items-center">
+                        <span class="color-swatch swatch-unanswered"></span> Not Answered
+                    </div>
+                </div>
+                <button id="final-submit-button" class="w-full mt-6 bg-green-600 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-green-700 transition-all duration-300 transform hover:scale-105 shadow-md">
+                    Final Submit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="fullscreen-exit-overlay" class="fullscreen-exit-overlay">
+        <div class="fullscreen-exit-modal">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Full Screen Mode Exited!</h3>
+            <p class="text-gray-700 mb-6">
+                Exiting full screen will reset your exam progress. Please click "Restart Exam" to begin again.
+            </p>
+            <button id="overlay-restart-button" class="bg-red-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                Restart Exam
+            </button>
+        </div>
+    </div>
+
+    <div id="custom-message-box" class="custom-message-box">
+        <p class="message-content" id="message-box-content"></p>
+        <button class="close-btn" id="message-box-close-btn">OK</button>
+    </div>
+
+    <script>
+        const API_BASE_URL = window.location.origin; // Dynamically get base URL
+        const NUMBER_OF_QUESTIONS_PER_TEST = 25; // Define the number of questions per test
+
+        // Global state variables
+        let questions = []; // This will hold the 25 randomly selected questions
+        let currentQuestionIndex = 0;
+        let userSelections = []; // Stores selected option index for the current test's questions
+        let markedForReview = []; // Stores boolean for marked questions for the current test's questions
+        let score = 0;
+        let quizCompleted = false;
+
+        // Get DOM elements
+        const startScreen = document.getElementById('start-screen'); // Added
+        const userNameInput = document.getElementById('user-name-input'); // Added
+        const startQuizButton = document.getElementById('start-quiz-button'); // Added
+
+        const quizContainer = document.getElementById('quiz-container');
+        const currentQuestionNumberSpan = document.getElementById('current-question-number');
+        const totalQuestionsSpan = document.getElementById('total-questions');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const clearResponseButton = document.getElementById('clear-response-button');
+        const markForReviewButton = document.getElementById('mark-for-review-button');
+        const progressBar = document.getElementById('progress-bar');
+        const fullscreenExitOverlay = document.getElementById('fullscreen-exit-overlay');
+        const overlayRestartButton = document.getElementById('overlay-restart-button');
+        const questionNavigationGrid = document.getElementById('question-navigation-grid');
+        const finalSubmitButton = document.getElementById('final-submit-button');
+
+        const customMessageBox = document.getElementById('custom-message-box');
+        const messageBoxContent = document.getElementById('message-box-content');
+        const messageBoxCloseBtn = document.getElementById('message-box-close-btn');
+
+        /**
+         * Displays a custom message box instead of alert.
+         * @param {string} message - The message to display.
+         * @param {function} [callback] - Optional callback function to execute when OK is clicked.
+         */
+        function showCustomMessage(message, callback = null) {
+            messageBoxContent.textContent = message;
+            customMessageBox.classList.add('show');
+            // Remove previous event listener to prevent multiple calls
+            messageBoxCloseBtn.onclick = null;
+            messageBoxCloseBtn.onclick = () => {
+                customMessageBox.classList.remove('show');
+                if (callback) callback();
+            };
+        }
+
+
+        /**
+         * Enters full-screen mode for the document body.
+         */
+        function enterFullScreen() {
+            const element = document.documentElement;
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) { /* Firefox */
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) { /* IE/Edge */
+                element.msRequestFullscreen();
+            }
+        }
+
+        /**
+         * Exits full-screen mode.
+         */
+        function exitFullScreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { /* Firefox */
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE/Edge */
+                document.msExitFullscreen();
+            }
+        }
+
+        /**
+         * Fetches questions and initializes the quiz.
+         */
+        async function initializeQuiz() {
+            const jwtToken = localStorage.getItem('jwtToken');
+            if (!jwtToken) {
+                showCustomMessage('You are not logged in. Please log in to start a test.', () => {
+                    window.location.href = '/Login'; // Redirect to login if not authenticated
+                });
+                return;
+            }
+
+            // Enter full screen as soon as quiz loads
+            enterFullScreen();
+
+            // Fetch questions from backend
+            try {
+                const response = await fetch(`${API_BASE_URL}/start-test`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${jwtToken}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    questions = data.questions;
+                    userSelections = Array(questions.length).fill(null); // Initialize selections for new test
+                    markedForReview = Array(questions.length).fill(false); // Initialize marked for review
+                    renderQuestion(); // Render the first question
+                } else if (response.status === 401) {
+                    showCustomMessage('Your session has expired. Please log in again.', () => {
+                        localStorage.clear();
+                        window.location.href = '/Login';
+                    });
+                } else {
+                    const errorData = await response.json();
+                    showCustomMessage(`Failed to load questions: ${errorData.message || response.statusText}`, () => {
+                        // Optionally redirect to home or login on severe error
+                        window.location.href = '/home';
+                    });
+                }
+            } catch (error) {
+                console.error('Network error during question fetch:', error);
+                showCustomMessage('Network error. Could not load questions. Please check your connection and try again.', () => {
+                    // Optionally redirect to home or login on network error
+                    window.location.href = '/home';
+                });
+            }
+        }
+
+
+        /**
+         * Renders the current question and its options, along with navigation grid.
+         */
+        function renderQuestion() {
+            if (questions.length === 0) {
+                // This might happen if fetchQuestions fails or is not called
+                showCustomMessage('Error: Questions not loaded. Please return to dashboard and try again.', () => {
+                    window.location.href = '/home';
+                });
+                return;
+            }
+
+            const currentQuestion = questions[currentQuestionIndex];
+            currentQuestionNumberSpan.textContent = currentQuestionIndex + 1;
+            totalQuestionsSpan.textContent = questions.length;
+            questionText.textContent = currentQuestion.question;
+
+            optionsContainer.innerHTML = ''; // Clear previous options
+
+            // Create radio buttons for options
+            currentQuestion.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.classList.add('relative', 'flex', 'items-start');
+
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.id = `option-${index}`;
+                input.name = 'quiz-option';
+                input.value = index;
+                input.classList.add('h-5', 'w-5', 'text-blue-600', 'focus:ring-blue-500', 'border-gray-300', 'rounded-full', 'mt-1');
+                input.addEventListener('change', (e) => {
+                    userSelections[currentQuestionIndex] = parseInt(e.target.value);
+                    updateNavigationButtons(); // Enable next button when an option is selected
+                    renderQuestionNavigationGrid(); // Update grid for "answered" status
+                });
+
+                const label = document.createElement('label');
+                label.htmlFor = `option-${index}`;
+                label.textContent = option;
+                label.classList.add('ml-3', 'block', 'text-base', 'font-medium', 'text-gray-700', 'p-2', 'w-full', 'rounded-lg', 'border', 'border-gray-300', 'cursor-pointer', 'hover:bg-gray-50');
+
+                // Pre-select if an answer exists for this question
+                if (userSelections[currentQuestionIndex] === index) {
+                    input.checked = true;
+                    label.classList.add('bg-blue-50', 'border-blue-500'); // Highlight selected
+                } else {
+                    label.classList.remove('bg-blue-50', 'border-blue-500');
+                }
+
+                optionDiv.appendChild(input);
+                optionDiv.appendChild(label);
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            // Update navigation buttons (prev/next/submit)
+            updateNavigationButtons();
+            // Render the question navigation grid (right pane)
+            renderQuestionNavigationGrid();
+            updateProgressBar();
+            updateMarkForReviewButtonState(); // Update Mark for Review button state
+        }
+
+        /**
+         * Updates the progress bar based on answered questions.
+         */
+        function updateProgressBar() {
+            const answeredCount = userSelections.filter(selection => selection !== null).length;
+            const progressPercentage = (answeredCount / questions.length) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+        }
+
+        /**
+         * Updates the state of the navigation buttons (Previous, Next, Submit).
+         */
+        function updateNavigationButtons() {
+            // Previous Button
+            if (currentQuestionIndex > 0) {
+                prevButton.disabled = false;
+                prevButton.classList.remove('bg-gray-300', 'text-gray-600', 'cursor-not-allowed');
+                prevButton.classList.add('bg-blue-600', 'text-white', 'hover:bg-blue-700', 'hover:scale-105');
+            } else {
+                prevButton.disabled = true;
+                prevButton.classList.add('bg-gray-300', 'text-gray-600', 'cursor-not-allowed');
+                prevButton.classList.remove('bg-blue-600', 'text-white', 'hover:bg-blue-700', 'hover:scale-105');
+            }
+
+            // Next Button
+            if (currentQuestionIndex < questions.length - 1) {
+                nextButton.disabled = false;
+                nextButton.classList.remove('bg-gray-300', 'text-gray-600', 'cursor-not-allowed');
+                nextButton.classList.add('bg-blue-600', 'text-white', 'hover:bg-blue-700', 'hover:scale-105');
+                nextButton.textContent = 'Next Question';
+            } else {
+                nextButton.disabled = true; // No next question if it's the last one
+                nextButton.classList.add('bg-gray-300', 'text-gray-600', 'cursor-not-allowed');
+                nextButton.classList.remove('bg-blue-600', 'text-white', 'hover:bg-blue-700', 'hover:scale-105');
+                nextButton.textContent = 'End of Test'; // Text for the last question
+            }
+
+            // Final Submit Button visibility
+            // The final submit button should be visible when on the last question, regardless of whether it's answered.
+            if (currentQuestionIndex === questions.length - 1) {
+                finalSubmitButton.classList.remove('hidden');
+            } else {
+                finalSubmitButton.classList.add('hidden');
+            }
+        }
+
+        /**
+         * Renders the grid of question numbers for navigation.
+         */
+        function renderQuestionNavigationGrid() {
+            questionNavigationGrid.innerHTML = ''; // Clear previous grid
+
+            questions.forEach((_, index) => {
+                const qNumBtn = document.createElement('button');
+                qNumBtn.textContent = index + 1;
+                qNumBtn.classList.add(
+                    'p-2', 'rounded-lg', 'text-sm', 'font-semibold', 'transition-colors', 'duration-200', 'flex', 'items-center', 'justify-center', 'question-number-btn'
+                );
+
+                // Apply colors based on status
+                if (index === currentQuestionIndex) {
+                    qNumBtn.classList.add('current');
+                } else if (markedForReview[index]) {
+                    qNumBtn.classList.add('marked-for-review');
+                } else if (userSelections[index] !== null) {
+                    qNumBtn.classList.add('answered');
+                }
+
+                qNumBtn.addEventListener('click', () => goToQuestion(index));
+                questionNavigationGrid.appendChild(qNumBtn);
+            });
+        }
+
+        /**
+         * Navigates to a specific question.
+         * @param {number} index - The index of the question to navigate to.
+         */
+        function goToQuestion(index) {
+            currentQuestionIndex = index;
+            renderQuestion();
+        }
+
+        /**
+         * Handles clearing the selected response for the current question.
+         */
+        function handleClearResponse() {
+            userSelections[currentQuestionIndex] = null;
+            // Uncheck the radio button
+            const radioButtons = document.querySelectorAll('input[name="quiz-option"]');
+            radioButtons.forEach(radio => radio.checked = false);
+            updateNavigationButtons(); // Update buttons since selection is cleared
+            renderQuestionNavigationGrid(); // Update grid color
+        }
+
+        /**
+         * Handles marking/unmarking the current question for review.
+         */
+        function handleMarkForReview() {
+            markedForReview[currentQuestionIndex] = !markedForReview[currentQuestionIndex];
+            updateMarkForReviewButtonState();
+            renderQuestionNavigationGrid(); // Update grid to show/hide mark
+        }
+
+        /**
+         * Updates the styling of the 'Mark for Review' button based on current question's status.
+         */
+        function updateMarkForReviewButtonState() {
+            if (markedForReview[currentQuestionIndex]) {
+                markForReviewButton.classList.add('bg-yellow-400', 'text-white', 'border-yellow-500');
+                markForReviewButton.classList.remove('bg-yellow-100', 'text-yellow-700', 'border-yellow-300');
+                markForReviewButton.textContent = 'Unmark for Review';
+            } else {
+                markForReviewButton.classList.remove('bg-yellow-400', 'text-white', 'border-yellow-500');
+                markForReviewButton.classList.add('bg-yellow-100', 'text-yellow-700', 'border-yellow-300');
+                markForReviewButton.textContent = 'Mark for Review';
+            }
+        }
+
+
+        /**
+         * Calculates final score and saves to DB, then redirects.
+         */
+        async function finalizeQuiz() {
+            score = 0; // Reset score before final calculation
+            questions.forEach((q, index) => {
+                if (userSelections[index] !== null && userSelections[index] === q.correctAnswerIndex) {
+                    score++;
+                }
+            });
+
+            const totalQuestions = questions.length;
+            const isPass = score > 5; // Pass if score is greater than 13
+
+            const jwtToken = localStorage.getItem('jwtToken');
+            if (!jwtToken) {
+                showCustomMessage('You are not logged in. Please log in.', () => {
+                    window.location.href = '/Login';
+                });
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/save-test-result`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${jwtToken}`
+                    },
+                    body: JSON.stringify({ score, totalQuestions, isPass })
+                });
+
+                if (response.ok) {
+                    // Store results in local storage to be picked up by Certificate.html
+                    localStorage.setItem('finalScore', score);
+                    localStorage.setItem('testPassed', isPass);
+                    localStorage.setItem('totalTestQuestions', totalQuestions); // Store total questions for certificate
+                    quizCompleted = true; // Mark quiz as completed
+                    exitFullScreen(); // Exit full screen gracefully
+
+                    if (isPass) {
+                        window.location.href = '/certificate'; // Redirect to certificate page
+                    } else {
+                        showCustomMessage(`Test Completed!\nYour Score: ${score}/${totalQuestions}. You did not pass this time. Keep practicing!`, () => {
+                            window.location.href = '/home'; // Redirect to home page
+                        });
+                    }
+                } else if (response.status === 401) {
+                    showCustomMessage('Your session has expired. Please log in again.', () => {
+                        localStorage.clear();
+                        window.location.href = '/Login';
+                    });
+                } else {
+                    const errorData = await response.json();
+                    showCustomMessage(`Failed to save test result: ${errorData.message || response.statusText}`, () => {
+                        window.location.href = '/home'; // Go back to home even on error
+                    });
+                }
+            } catch (error) {
+                console.error('Network error during finalization:', error);
+                showCustomMessage('Network error. Could not save test result. Please check your connection and try again.', () => {
+                    window.location.href = '/home'; // Go back to home on network error
+                });
+            }
+        }
+
+        /**
+         * Handles restarting the quiz from scratch (e.g., from overlay).
+         */
+        function handleRestartQuiz() {
+            exitFullScreen();
+            currentQuestionIndex = 0;
+            score = 0;
+            quizCompleted = false; // Reset quiz completion status
+
+            // Clear current test state
+            questions = [];
+            userSelections = [];
+            markedForReview = [];
+
+            // Redirect to home or login as appropriate
+            const jwtToken = localStorage.getItem('jwtToken');
+            if (jwtToken) {
+                window.location.href = '/home'; // Go to dashboard if logged in
+            } else {
+                window.location.href = '/Login'; // Go to login if not logged in
+            }
+        }
+
+        // --- Event Listeners ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Event listener for the "Start Quiz" button
+            startQuizButton.addEventListener('click', () => {
+                const userName = userNameInput.value.trim();
+                if (userName) {
+                    // Hide the start screen and show the quiz container
+                    startScreen.classList.add('hidden');
+                    quizContainer.classList.remove('hidden');
+
+                    // Set the user's name for potential certificate display
+                    const certificateUserName = document.getElementById('certificate-user-name');
+                    if (certificateUserName) {
+                        certificateUserName.textContent = userName;
+                    }
+
+                    initializeQuiz(); // Now, initialize the quiz (fetch questions, enter fullscreen)
+                } else {
+                    showCustomMessage('Please enter your name to start the quiz.');
+                }
+            });
+
+            // Add other existing event listeners that are not related to the start button
+            prevButton.addEventListener('click', () => goToQuestion(currentQuestionIndex - 1));
+            nextButton.addEventListener('click', () => goToQuestion(currentQuestionIndex + 1));
+            clearResponseButton.addEventListener('click', handleClearResponse);
+            markForReviewButton.addEventListener('click', handleMarkForReview);
+            finalSubmitButton.addEventListener('click', () => {
+                showCustomMessage('Are you sure you want to submit the test?', () => {
+                    finalizeQuiz();
+                });
+            });
+            overlayRestartButton.addEventListener('click', handleRestartQuiz);
+
+            // Event listener for full screen changes (keep existing logic)
+            document.addEventListener('fullscreenchange', () => {
+                if (!document.fullscreenElement) { // If exited full screen
+                    if (!quizCompleted) { // If quiz was in progress when exited fullscreen
+                         fullscreenExitOverlay.classList.add('show'); // Show overlay
+                    }
+                } else {
+                    // Entered full screen
+                    fullscreenExitOverlay.classList.remove('show'); // Hide overlay if it was shown
+                }
+            });
+            // Add vendor-prefixed events for cross-browser compatibility
+            document.addEventListener('webkitfullscreenchange', () => {
+                if (!document.webkitFullscreenElement && !quizCompleted) {
+                    fullscreenExitOverlay.classList.add('show');
+                } else {
+                    fullscreenExitOverlay.classList.remove('show');
+                }
+            });
+            document.addEventListener('mozfullscreenchange', () => {
+                if (!document.mozFullScreenElement && !quizCompleted) {
+                    fullscreenExitOverlay.classList.add('show');
+                } else {
+                    fullscreenExitOverlay.classList.remove('show');
+                }
+            });
+            document.addEventListener('MSFullscreenChange', () => {
+                if (!document.msFullscreenElement && !quizCompleted) {
+                    fullscreenExitOverlay.classList.add('show');
+                } else {
+                    fullscreenExitOverlay.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

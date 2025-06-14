@@ -1,0 +1,26 @@
+{
+  "name": "aws-mock-test-backend",
+  "version": "1.0.0",
+  "description": "Backend for AWS Cloud Practitioner Mock Test with user auth and DynamoDB.",
+  "main": "backend.js",
+  "scripts": {
+    "start": "node backend.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.828.0",
+    "@aws-sdk/lib-dynamodb": "^3.828.0",
+    "aws-sdk": "^2.1692.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "aws-sdk-js-codemod": "^2.4.5"
+  }
+}

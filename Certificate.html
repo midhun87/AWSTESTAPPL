@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Achievement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for certificate background and finer controls */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .certificate-container {
+            background-color: #ffffff;
+            border: 8px solid #a3b18a; /* Earthy green border */
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            max-width: 900px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M10 0L0 10V0h10zm0 10l-10 10V10h10zm0 10l-10 10V20h10zm0 10l-10 10V30h10zm0 10l-10 10V40h10zm0 10l-10 10V50h10zm0 10l-10 10V60h10zm0 10l-10 10V70h10zm0 10l-10 10V80h10zm0 10l-10 10V90h10zM90 0l10 10V0h-10zm0 10l10 10V10h-10zm0 10l10 10V20h-10zm0 10l10 10V30h-10zm0 10l10 10V40h-10zm0 10l10 10V50h-10zm0 10l10 10V60h-10zm0 10l10 10V70h-10zm0 10l10 10V80h-10zm0 10l10 10V90h-10z" fill="%23e0e0e0" opacity="0.3"/%3E%3C/svg%3E'); /* Subtle pattern */
+            background-size: 100px 100px;
+        }
+
+        .certificate-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem; /* Larger for impact */
+            color: #3f51b5; /* A deep blue for elegance */
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .certificate-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #a3b18a, #3f51b5);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .certificate-subtitle {
+            font-size: 1.5rem;
+            color: #607d8b;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .certificate-recipient {
+            font-size: 2.2rem;
+            color: #4a4a4a;
+            font-weight: 700;
+            margin: 20px 0;
+            text-decoration: underline;
+            text-decoration-color: #a3b18a;
+            text-underline-offset: 8px;
+        }
+
+        .certificate-details {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.8;
+            margin-top: 30px;
+        }
+
+        .certificate-details strong {
+            color: #333;
+            font-weight: 700;
+        }
+
+        .certificate-date {
+            font-size: 1.2rem;
+            color: #777;
+            margin-top: 40px;
+            font-style: italic;
+        }
+
+        .certificate-footer {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 1.1rem;
+            color: #777;
+        }
+
+        .signature-line {
+            border-top: 1px solid #ccc;
+            width: 200px;
+            margin: 0 auto 5px;
+        }
+
+        .print-button-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .certificate-container {
+                padding: 25px;
+                border-width: 5px;
+            }
+            .certificate-title {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+            }
+            .certificate-subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+            }
+            .certificate-recipient {
+                font-size: 1.8rem;
+                margin: 15px 0;
+            }
+            .certificate-details {
+                font-size: 1rem;
+                margin-top: 20px;
+            }
+            .certificate-date {
+                font-size: 1rem;
+                margin-top: 30px;
+            }
+            .certificate-footer {
+                flex-direction: column;
+                margin-top: 30px;
+                gap: 20px;
+            }
+        }
+
+        @media print {
+            body {
+                background: none;
+                display: block;
+                padding: 0;
+                margin: 0;
+            }
+            .certificate-container {
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                width: 100%;
+                max-width: 100%;
+                height: 100vh;
+                margin: 0;
+                padding: 0;
+                background-image: none;
+            }
+            .print-button-container {
+                display: none; /* Hide the print button when printing */
+            }
+        }
+
+        /* Loading Spinner */
+        .loader {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #3f51b5; /* Blue */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 50px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            z-index: 1000;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .message-box-content {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .message-box-button {
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .message-box-button:hover {
+            background-color: #303f9f;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Message Box Element -->
+    <div id="messageBox" class="hidden message-box">
+        <div id="messageBoxContent" class="message-box-content"></div>
+        <button id="messageBoxButton" class="message-box-button">OK</button>
+    </div>
+
+    <div class="certificate-container" id="certificateContainer">
+        <div id="loadingSpinner" class="loader"></div>
+        <div id="certificateContent" class="hidden">
+            <h1 class="certificate-title">Certificate of Achievement</h1>
+            <p class="certificate-subtitle">This certificate is proudly presented to</p>
+
+            <p class="certificate-recipient" id="studentName">Loading Name...</p>
+
+            <p class="certificate-details">
+                For successfully completing the online examination with an outstanding performance.
+                Your dedication and hard work have resulted in achieving a remarkable
+                <strong id="studentScore">Loading Score...</strong>.
+            </p>
+
+            <p class="certificate-details">
+                Email: <strong id="studentEmail">Loading Email...</strong>
+            </p>
+
+            <p class="certificate-date">Date of Test: <span id="testDate">Loading Date...</span></p>
+
+            <div class="certificate-footer">
+                <div>
+                    <div class="signature-line"></div>
+                    <p>Examination Board</p>
+                </div>
+                <div>
+                    <div class="signature-line"></div>
+                    <p>Date of Issue: <span id="issueDate"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="print-button-container">
+        <button id="printCertificate" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition-colors duration-300">
+            Print Certificate
+        </button>
+    </div>
+
+    <script>
+        // Function to show a custom message box instead of alert()
+        function showMessageBox(message) {
+            const messageBox = document.getElementById('messageBox');
+            const messageBoxContent = document.getElementById('messageBoxContent');
+            const messageBoxButton = document.getElementById('messageBoxButton');
+
+            messageBoxContent.textContent = message;
+            messageBox.classList.remove('hidden');
+
+            messageBoxButton.onclick = () => {
+                messageBox.classList.add('hidden');
+            };
+        }
+
+        // Function to set placeholder data
+        function setPlaceholderData() {
+            document.getElementById('studentName').textContent = "Valued Participant";
+            document.getElementById('studentEmail').textContent = "participant@example.com";
+            document.getElementById('studentScore').textContent = "N/A";
+            document.getElementById('testDate').textContent = "Ongoing";
+            document.getElementById('issueDate').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const certificateContent = document.getElementById('certificateContent');
+            const studentNameElem = document.getElementById('studentName');
+            const studentEmailElem = document.getElementById('studentEmail');
+            const studentScoreElem = document.getElementById('studentScore');
+            const testDateElem = document.getElementById('testDate');
+            const issueDateElem = document.getElementById('issueDate');
+            const printButton = document.getElementById('printCertificate');
+
+            // Set current issue date initially
+            issueDateElem.textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            const BASE_URL = 'http://localhost:5000'; // Your backend URL
+
+            // Get userId from URL query parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('userId');
+
+            if (userId) {
+                try {
+                    const response = await fetch(`${BASE_URL}/get-certificate-data?userId=${userId}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                            // No Authorization header needed as backend route is now public
+                        }
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        console.error(`Error: ${errorData.message || 'Failed to fetch certificate data.'}`); // Log error to console
+                        setPlaceholderData(); // Display placeholders on error
+                    } else {
+                        const data = await response.json();
+                        console.log('Certificate data received:', data);
+
+                        if (data.studentName) { // Check if dynamic data was actually found
+                            studentNameElem.textContent = data.studentName;
+                            studentEmailElem.textContent = data.studentEmail;
+                            studentScoreElem.textContent = `${data.studentScore} / ${data.totalQuestions}`;
+                            
+                            // Robust date formatting
+                            const testDateObj = new Date(data.testDate);
+                            if (!isNaN(testDateObj.getTime())) { // Check if date is valid
+                                testDateElem.textContent = testDateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                            } else {
+                                testDateElem.textContent = "Invalid Date";
+                                console.warn("Invalid testDate received from backend:", data.testDate);
+                            }
+                        } else {
+                            console.log(data.message || "No specific passing test data found for this user. Showing generic certificate."); // Log message to console
+                            setPlaceholderData(); // Show placeholders if no passing data
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error fetching certificate data:', error);
+                    console.error(`Network or server error: ${error.message}. Showing generic certificate.`); // Log error to console
+                    setPlaceholderData(); // Display placeholders on network error
+                }
+            } else {
+                // If no userId in URL, show placeholder data immediately
+                console.log("No User ID provided in the URL. Showing generic certificate."); // Log message to console
+                setPlaceholderData();
+            }
+
+            // Hide spinner and show content regardless of dynamic data fetching outcome
+            loadingSpinner.classList.add('hidden');
+            certificateContent.classList.remove('hidden');
+
+            // Print button functionality
+            printButton.addEventListener('click', () => {
+                window.print();
+            });
+        });
+    </script>
+</body>
+</html>

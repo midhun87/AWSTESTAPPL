@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - AWS Mock Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #e0f2f7, #c1e4f4); /* Lighter blue gradient */
+        }
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            padding: 2.5rem;
+            max-width: 450px;
+            width: 95%;
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s ease-in-out;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);
+        }
+        .input-field:focus {
+            border-color: #3b82f6;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+        }
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+        .submit-button:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        .submit-button:active {
+            transform: translateY(0);
+        }
+        .error-message {
+            background-color: #fee2e2;
+            color: #ef4444;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .success-message {
+            background-color: #d1fae5;
+            color: #10b981;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="form-container">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Sign Up</h2>
+        <div id="message" class="hidden"></div>
+        <form id="signupForm" class="space-y-6">
+            <div>
+                <label for="username" class="block text-gray-700 text-sm font-medium mb-2">Username</label>
+                <input type="text" id="username" name="username" class="input-field" placeholder="Choose a username" required>
+            </div>
+            <div>
+                <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email</label>
+                <input type="email" id="email" name="email" class="input-field" placeholder="your@example.com" required>
+            </div>
+            <div>
+                <label for="mobile" class="block text-gray-700 text-sm font-medium mb-2">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" class="input-field" placeholder="e.g., 9876543210" pattern="[0-9]{10}" title="Mobile number must be 10 digits" required>
+            </div>
+            <div>
+                <label for="password" class="block text-gray-700 text-sm font-medium mb-2">Password</label>
+                <input type="password" id="password" name="password" class="input-field" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="submit-button">Register</button>
+        </form>
+        <p class="text-center text-gray-600 text-sm mt-6">
+            Already have an account? <a href="/Login" class="text-blue-600 hover:underline font-medium">Login</a>
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+            const password = document.getElementById('password').value;
+            const messageDiv = document.getElementById('message');
+
+            messageDiv.classList.add('hidden'); // Hide previous messages
+
+            try {
+                const response = await fetch('/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, email, mobile, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    messageDiv.classList.remove('hidden', 'error-message');
+                    messageDiv.classList.add('success-message');
+                    messageDiv.textContent = data.message || 'Registration successful! Redirecting to login...';
+                    setTimeout(() => {
+                        window.location.href = '/Login'; // Redirect to login page after a short delay
+                    }, 2000);
+                } else {
+                    messageDiv.classList.remove('hidden', 'success-message');
+                    messageDiv.classList.add('error-message');
+                    messageDiv.textContent = data.message || 'Registration failed. Please try again.';
+                }
+            } catch (error) {
+                console.error('Error during signup:', error);
+                messageDiv.classList.remove('hidden', 'success-message');
+                messageDiv.classList.add('error-message');
+                messageDiv.textContent = 'Network error or server unavailable.';
+            }
+        });
+    </script>
+</body>
+</html>

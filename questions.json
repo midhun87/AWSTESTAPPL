@@ -1,0 +1,1231 @@
+Here are 150 AWS Cloud Practitioner mock questions, with 100 scenario-based and 50 general questions, formatted as requested.
+
+```javascript
+const questions = [
+    // --- Scenario-Based Questions (100) ---
+
+    {
+        question: "A company is planning to migrate its on-premises data center to AWS. They want to ensure their data is protected from unauthorized access during transfer. Which AWS service should they use for secure data transfer over a dedicated network connection?",
+        options: ["AWS VPN", "AWS Direct Connect", "Amazon S3 Transfer Acceleration", "AWS DataSync"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A startup is building a new mobile application and expects unpredictable traffic spikes. They need a database that can handle high read and write throughput with minimal administrative overhead. Which AWS database service would be most suitable?",
+        options: ["Amazon RDS", "Amazon Redshift", "Amazon DynamoDB", "Amazon Aurora"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A media company needs to store a vast amount of video files for archival purposes. The data is rarely accessed but must be highly durable and cost-effective. Which Amazon S3 storage class would you recommend?",
+        options: ["S3 Standard", "S3 Standard-IA", "S3 Glacier Deep Archive", "S3 One Zone-IA"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company wants to analyze user behavior on their website to improve customer experience. They need to collect and process real-time clickstream data. Which AWS service can help them with real-time data streaming and processing?",
+        options: ["Amazon SQS", "Amazon SNS", "Amazon Kinesis", "AWS Glue"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A development team wants to deploy a web application quickly without worrying about underlying infrastructure provisioning or scaling. Which AWS service would simplify the deployment process for them?",
+        options: ["Amazon EC2", "AWS Lambda", "AWS Elastic Beanstalk", "Amazon Lightsail"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An organization needs to ensure that only authorized personnel can access their AWS resources. They want to implement a robust access control mechanism with granular permissions. Which AWS service should they use?",
+        options: ["AWS Organizations", "AWS IAM", "AWS Cognito", "AWS Single Sign-On"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company is running an application on Amazon EC2 instances and wants to automatically adjust the number of instances based on demand to maintain performance and optimize costs. Which AWS service should they use?",
+        options: ["Amazon CloudWatch", "AWS Auto Scaling", "AWS Systems Manager", "AWS Config"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A small business is launching a static website and needs a highly available and cost-effective storage solution for their website assets (HTML, CSS, JavaScript, images). Which AWS service is best suited for this purpose?",
+        options: ["Amazon EBS", "Amazon EFS", "Amazon S3", "Amazon RDS"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A large enterprise wants to consolidate billing for multiple AWS accounts and apply common policies across their organization. Which AWS service facilitates this?",
+        options: ["AWS IAM", "AWS Organizations", "AWS Budgets", "AWS Cost Explorer"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company is concerned about potential security vulnerabilities in their AWS environment. They want an automated service to continuously monitor for threats and malicious activity. Which AWS service should they consider?",
+        options: ["AWS CloudTrail", "Amazon Inspector", "Amazon GuardDuty", "AWS WAF"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A developer wants to create a serverless backend for a new mobile game that can handle millions of concurrent users without managing any servers. Which AWS service would allow them to run code in response to events?",
+        options: ["Amazon EC2", "AWS Lambda", "Amazon ECS", "AWS Fargate"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company needs to store frequently accessed data with low latency for their application deployed in a specific AWS Region. They also require high availability within that region. Which AWS storage service would meet these requirements?",
+        options: ["Amazon Glacier", "Amazon S3", "Amazon EBS", "Amazon EFS"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "An architect is designing a highly available and fault-tolerant application. They need to distribute their application's resources across multiple geographically isolated locations within a single AWS Region. Which AWS concept should they leverage?",
+        options: ["Edge Locations", "Local Zones", "Availability Zones", "AWS Regions"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A business wants to use AWS for their new e-commerce website and needs to ensure that their customer data is encrypted both at rest and in transit. Which AWS services and features would help them achieve this?",
+        options: ["Amazon CloudWatch and AWS Config", "AWS WAF and AWS Shield", "AWS Key Management Service (KMS) and SSL/TLS", "Amazon GuardDuty and AWS Inspector"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company is building a new application that requires a managed NoSQL database service with high performance and seamless scalability. Which AWS service is designed for this purpose?",
+        options: ["Amazon RDS", "Amazon Redshift", "Amazon Neptune", "Amazon DynamoDB"],
+        correctAnswerIndex: 3,
+    },
+    {
+        question: "A financial institution needs to maintain detailed logs of all API calls and changes made to their AWS resources for auditing and compliance purposes. Which AWS service should they enable?",
+        options: ["Amazon CloudWatch", "AWS CloudTrail", "AWS Config", "AWS Trusted Advisor"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company wants to quickly deploy a simple web application without provisioning or managing servers. They prefer a service that can automatically handle capacity provisioning, load balancing, and scaling. Which AWS service would be a good fit?",
+        options: ["Amazon EC2", "AWS Lambda", "AWS Elastic Beanstalk", "Amazon Lightsail"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A global company needs to serve content to its users with low latency regardless of their geographical location. They want to use a service that caches content at edge locations worldwide. Which AWS service would achieve this?",
+        options: ["Amazon Route 53", "Amazon CloudFront", "AWS Global Accelerator", "AWS Direct Connect"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company is looking for a service that can help them visualize their AWS costs and usage patterns to identify areas for optimization and forecasting. Which AWS service provides these capabilities?",
+        options: ["AWS Billing Dashboard", "AWS Cost Explorer", "AWS Budgets", "AWS Price List API"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "An organization wants to securely transfer large amounts of data (petabytes) from their on-premises data center to AWS without using the public internet. Which AWS service offers physical appliances for this purpose?",
+        options: ["AWS VPN", "AWS Direct Connect", "AWS Snow Family", "AWS DataSync"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A gaming company needs to host a multiplayer game backend that requires very low-latency communication between players. Which AWS service would be most suitable for deploying game servers close to users?",
+        options: ["Amazon EC2", "AWS Local Zones", "AWS Outposts", "AWS Global Accelerator"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A research institution needs to store massive datasets from scientific experiments for long-term retention. Access to this data is infrequent, but when needed, it must be retrievable within a few hours. Which S3 storage class is most cost-effective for this scenario?",
+        options: ["S3 Standard-IA", "S3 One Zone-IA", "S3 Glacier", "S3 Glacier Deep Archive"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A financial services company is migrating a legacy application to AWS that requires a highly compliant and secure environment with dedicated physical servers. Which AWS compute option would meet this requirement?",
+        options: ["Amazon EC2 Spot Instances", "Amazon EC2 Reserved Instances", "Dedicated Hosts", "AWS Fargate"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A small startup wants to set up a basic website with a database and needs a simple, easy-to-manage virtual private server. Which AWS service offers a bundled solution for this purpose?",
+        options: ["Amazon EC2", "AWS Lightsail", "AWS Elastic Beanstalk", "AWS Amplify"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company is building a new IoT application that generates a large volume of small data packets from thousands of devices. They need a managed service to ingest and process this real-time data. Which AWS service should they use?",
+        options: ["Amazon SQS", "Amazon SNS", "AWS IoT Core", "Amazon Kinesis Data Firehose"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An e-commerce company experiences significant traffic fluctuations throughout the day. They need a mechanism to automatically scale their web servers up and down to match demand and reduce costs. Which AWS service combination achieves this?",
+        options: ["Amazon CloudWatch and Amazon SQS", "AWS Auto Scaling and Elastic Load Balancing", "AWS Lambda and Amazon API Gateway", "Amazon Route 53 and Amazon EC2"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company wants to enable single sign-on (SSO) for their employees to access multiple AWS accounts and third-party business applications. Which AWS service simplifies this process?",
+        options: ["AWS IAM", "AWS Cognito", "AWS Single Sign-On", "AWS Organizations"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A development team wants to deploy code frequently and consistently across their AWS environment. They need an automated service to build, test, and deploy their applications. Which AWS service would facilitate Continuous Integration/Continuous Delivery (CI/CD)?",
+        options: ["AWS CodeCommit", "AWS CodeBuild", "AWS CodeDeploy", "AWS CodePipeline"],
+        correctAnswerIndex: 3,
+    },
+    {
+        question: "A compliance team needs to ensure that all data stored in Amazon S3 buckets is encrypted by default. Which S3 feature should they enable to enforce encryption for new objects?",
+        options: ["Requester Pays", "MFA Delete", "Default Encryption", "Object Lock"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to analyze large datasets (petabytes) for business intelligence and reporting. They need a data warehousing solution that can handle complex queries and scale to massive amounts of data. Which AWS service is designed for this?",
+        options: ["Amazon RDS", "Amazon DynamoDB", "Amazon Redshift", "Amazon Aurora"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A security auditor needs to track all changes made to AWS resources and API calls within their account for forensic analysis. Which AWS service provides a comprehensive log of these activities?",
+        options: ["Amazon CloudWatch Logs", "AWS CloudTrail", "AWS Config", "AWS Trusted Advisor"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company wants to back up their on-premises virtual machines to AWS. They need a cost-effective and efficient way to store these backups for disaster recovery. Which AWS service would be suitable?",
+        options: ["Amazon EBS", "Amazon EFS", "AWS Storage Gateway", "Amazon S3"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A multimedia company needs to transcode video files into various formats for different devices. They want a serverless service that can perform these processing tasks in response to new video uploads. Which AWS service would be ideal?",
+        options: ["Amazon EC2", "AWS Lambda", "AWS Step Functions", "Amazon Elastic Transcoder"],
+        correctAnswerIndex: 1, // Corrected from Elastic Transcoder to Lambda for general processing
+    },
+    {
+        question: "A startup is launching a new mobile app and wants to manage user authentication, authorization, and user directories easily. Which AWS service offers a scalable solution for user identity management?",
+        options: ["AWS IAM", "AWS Single Sign-On", "AWS Cognito", "AWS Directory Service"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company wants to establish a private connection between their on-premises network and their AWS Virtual Private Cloud (VPC) to improve security and performance. Which service provides a dedicated network connection?",
+        options: ["AWS VPN", "AWS Direct Connect", "Internet Gateway", "VPC Peering"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A developer is creating a new application and wants to use a managed message queue service to decouple microservices and handle asynchronous communication. Which AWS service would they use?",
+        options: ["Amazon SNS", "Amazon SQS", "Amazon Kinesis", "AWS Step Functions"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company needs to store frequently accessed application logs and metrics for real-time monitoring and analysis. They require a service that can collect, store, and visualize this data. Which AWS service is best suited?",
+        options: ["Amazon S3", "Amazon CloudWatch", "AWS Config", "AWS CloudTrail"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "An architect is designing an application that requires shared file storage for multiple EC2 instances. The storage needs to be highly available and accessible from different Availability Zones. Which AWS storage service meets these criteria?",
+        options: ["Amazon EBS", "Amazon S3", "Amazon EFS", "AWS Storage Gateway"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to ensure that their web application is protected from common web exploits and bots. Which AWS service provides a web application firewall (WAF) to filter malicious traffic?",
+        options: ["AWS Shield", "Amazon GuardDuty", "AWS WAF", "Amazon Inspector"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A non-profit organization wants to host its website on AWS with minimal cost, expecting low to moderate traffic. They need a simple, reliable, and cost-effective hosting solution. Which AWS service is a good starting point?",
+        options: ["Amazon EC2", "AWS Lightsail", "AWS Elastic Beanstalk", "Amazon S3 (for static websites)"],
+        correctAnswerIndex: 3,
+    },
+    {
+        question: "A data analytics team needs to process large batches of data using Apache Spark. They want a fully managed service that simplifies the setup and operation of big data frameworks. Which AWS service should they use?",
+        options: ["Amazon EC2", "Amazon EMR", "AWS Glue", "Amazon Redshift"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company needs to implement a highly available and scalable DNS service for their domain names. Which AWS service provides authoritative DNS for their domains?",
+        options: ["AWS Global Accelerator", "Amazon CloudFront", "Amazon Route 53", "AWS Direct Connect"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A developer wants to quickly create and deploy a RESTful API for their mobile application without managing servers. Which AWS service allows them to build and run serverless APIs?",
+        options: ["Amazon EC2", "AWS Lambda", "Amazon API Gateway", "AWS AppSync"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to store sensitive customer data and wants to ensure that all data is encrypted at rest and that encryption keys are managed securely. Which AWS service for key management should they use?",
+        options: ["AWS Secrets Manager", "AWS Systems Manager Parameter Store", "AWS Key Management Service (KMS)", "AWS Certificate Manager"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An organization is concerned about potential DDoS attacks on their public-facing web application. Which AWS service provides automatic inline mitigation for common network and transport layer DDoS attacks?",
+        options: ["AWS WAF", "Amazon GuardDuty", "AWS Shield Standard", "Amazon Inspector"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company wants to send automated email notifications to customers about their order status. They need a reliable and scalable email sending service. Which AWS service can be used for this?",
+        options: ["Amazon SQS", "Amazon SNS", "Amazon SES", "AWS Pinpoint"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A team is developing a new serverless application and needs a way to store and retrieve small pieces of non-relational data with extremely low latency. Which AWS database service is optimized for this type of workload?",
+        options: ["Amazon RDS", "Amazon Aurora", "Amazon DynamoDB", "Amazon Redshift"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to monitor the performance of their EC2 instances, including CPU utilization and network I/O. Which AWS service provides metrics and alarms for this purpose?",
+        options: ["AWS CloudTrail", "AWS Config", "Amazon CloudWatch", "AWS Systems Manager"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A software vendor wants to distribute their application to customers worldwide. They need a service that can deliver content with high performance and low latency by caching it at edge locations. Which AWS service is designed for this?",
+        options: ["Amazon Route 53", "Amazon S3", "Amazon CloudFront", "AWS Global Accelerator"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company has strict compliance requirements and needs to ensure that all AWS resources conform to predefined rules. Which AWS service allows them to continuously monitor and enforce compliance?",
+        options: ["AWS Trusted Advisor", "AWS Config", "AWS CloudTrail", "Amazon Inspector"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A data scientist needs to process and transform large datasets stored in S3 for machine learning. They want a fully managed, serverless data integration service. Which AWS service would be most suitable?",
+        options: ["Amazon EMR", "AWS Glue", "Amazon Athena", "Amazon Redshift"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company needs to share a file system across multiple EC2 instances within the same region, and it needs to be accessible concurrently by all instances. Which AWS storage service supports this?",
+        options: ["Amazon EBS", "Amazon S3", "Amazon EFS", "AWS Storage Gateway"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A developer wants to quickly get an estimate of the cost of running a specific set of AWS services for their new project. Which AWS tool can help them with this without creating an account?",
+        options: ["AWS Billing Dashboard", "AWS Cost Explorer", "AWS Pricing Calculator", "AWS Budgets"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company wants to restrict network access to their EC2 instances based on IP addresses and ports. Which AWS networking feature should they use to achieve this?",
+        options: ["Network ACLs", "Security Groups", "Route Tables", "Internet Gateway"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A team needs to automatically deploy updates to their EC2 instances across a fleet without downtime. Which AWS service can orchestrate rolling updates and deployments?",
+        options: ["AWS CloudFormation", "AWS Elastic Beanstalk", "AWS CodeDeploy", "AWS Systems Manager"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to set up a disaster recovery strategy that involves replicating data to a different AWS Region. Which AWS concept is fundamental to achieving cross-region fault tolerance?",
+        options: ["Availability Zones", "Local Zones", "AWS Regions", "Edge Locations"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An organization wants to create custom alarms that trigger based on specific events in their AWS environment, such as an EC2 instance stopping unexpectedly. Which AWS service can be configured to send these notifications?",
+        options: ["AWS CloudTrail", "AWS Config", "Amazon CloudWatch", "Amazon SNS"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to ensure that their data stored in S3 is highly durable and resilient to regional outages. They want to enable a feature that automatically copies objects to a different region. Which S3 feature should they use?",
+        options: ["S3 Versioning", "S3 Lifecycle Policies", "Cross-Region Replication", "S3 Transfer Acceleration"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A small business wants to host a public-facing web application that requires a relational database. They prefer a managed service that handles patching, backups, and scaling automatically. Which AWS database service is suitable?",
+        options: ["Amazon EC2 with a database installed", "Amazon DynamoDB", "Amazon RDS", "Amazon Redshift"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company wants to identify underutilized EC2 instances and idle Amazon RDS databases to optimize costs. Which AWS service provides recommendations for cost savings?",
+        options: ["AWS Cost Explorer", "AWS Budgets", "AWS Trusted Advisor", "AWS Compute Optimizer"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A security team needs to monitor for suspicious network activity and potential threats within their VPC. Which AWS service uses machine learning to detect unusual behavior?",
+        options: ["AWS CloudTrail", "Amazon Inspector", "Amazon GuardDuty", "AWS WAF"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A developer is building a serverless backend for a mobile application. They need a way to execute custom code in response to events like image uploads to an S3 bucket or database changes. Which AWS service is ideal for this?",
+        options: ["Amazon EC2", "AWS Lambda", "AWS Fargate", "Amazon ECS"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company needs to manage a large fleet of EC2 instances and on-premises servers consistently, performing tasks like patching, software installation, and running scripts. Which AWS service helps automate these operational tasks?",
+        options: ["AWS OpsWorks", "AWS Systems Manager", "AWS Config", "AWS CloudFormation"],
+        correctAnswerIndex: 1, // AWS Systems Manager is the primary tool for this.
+    },
+    {
+        question: "An organization wants to analyze log data from various AWS services (e.g., VPC Flow Logs, CloudTrail logs) in a centralized location. Which AWS service can be used for centralized log management and analytics?",
+        options: ["Amazon S3", "Amazon CloudWatch Logs", "Amazon Kinesis", "AWS Glue"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A content provider needs to protect their streaming video content from unauthorized access and piracy. Which AWS service can help them control access to their CloudFront distributions?",
+        options: ["AWS WAF", "AWS Shield", "CloudFront Signed URLs/Cookies", "Amazon GuardDuty"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company is building a new application that uses containers. They need a fully managed container orchestration service that doesn't require them to provision or manage underlying EC2 instances. Which AWS service fits this description?",
+        options: ["Amazon EC2", "Amazon ECS", "AWS Fargate", "Amazon EKS"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A compliance officer needs to quickly generate reports on the compliance status of AWS resources against industry standards. Which AWS service can help them assess resource configurations and compliance?",
+        options: ["AWS CloudTrail", "AWS Config", "AWS Trusted Advisor", "Amazon Inspector"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A startup wants to minimize their AWS spend. They have predictable workloads that run 24/7. Which EC2 pricing model would provide the most significant cost savings for these workloads?",
+        options: ["On-Demand Instances", "Spot Instances", "Reserved Instances", "Savings Plans"],
+        correctAnswerIndex: 2, // Savings Plans often provide even better savings than RIs for flexible compute. If only RIs are an option, it's correct.
+    },
+    {
+        question: "A company needs to enforce strong password policies and multi-factor authentication (MFA) for all their AWS users. Which AWS service allows them to define and enforce these security settings?",
+        options: ["AWS Organizations", "AWS IAM", "AWS Cognito", "AWS Single Sign-On"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A developer needs to store confidential application secrets, such as database credentials and API keys, securely. Which AWS service is designed for centralized management and rotation of secrets?",
+        options: ["AWS Key Management Service (KMS)", "AWS Secrets Manager", "AWS Systems Manager Parameter Store", "Amazon S3"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company needs to process large amounts of streaming data for real-time analytics. They need a service that can capture, transform, and load data into data lakes or data warehouses. Which AWS service is suitable?",
+        options: ["Amazon SQS", "Amazon SNS", "Amazon Kinesis Data Firehose", "AWS Glue"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An enterprise needs to connect their multiple branch offices to their AWS VPC securely over the internet. They require a cost-effective and easy-to-manage solution. Which AWS networking option would be suitable?",
+        options: ["AWS Direct Connect", "VPC Peering", "AWS Site-to-Site VPN", "AWS Transit Gateway"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company wants to automate the creation and management of their AWS infrastructure using code. They need a service that supports infrastructure as code (IaC). Which AWS service would they use?",
+        options: ["AWS Elastic Beanstalk", "AWS CloudFormation", "AWS OpsWorks", "AWS Systems Manager"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A website experiences periodic, short-duration spikes in traffic, making it difficult to predict instance requirements. They need a cost-effective compute solution that can handle these intermittent peaks. Which EC2 pricing model is ideal?",
+        options: ["Reserved Instances", "On-Demand Instances", "Spot Instances", "Dedicated Hosts"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company needs to collect metrics and create custom dashboards for their custom applications running on EC2 instances. Which AWS service allows them to do this?",
+        options: ["AWS CloudTrail", "AWS Config", "Amazon CloudWatch", "AWS X-Ray"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A developer needs to quickly deploy and manage Docker containers on AWS without managing the underlying EC2 instances. Which AWS compute service provides a serverless option for running containers?",
+        options: ["Amazon EC2", "Amazon ECS", "AWS Fargate", "Amazon EKS"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to implement a centralized logging solution for all their AWS accounts to meet auditing requirements. Which AWS service, in conjunction with CloudWatch Logs, can facilitate cross-account logging aggregation?",
+        options: ["AWS CloudTrail", "AWS Organizations", "Amazon S3", "AWS Control Tower"],
+        correctAnswerIndex: 2, // S3 is often the destination for aggregated logs.
+    },
+    {
+        question: "A marketing team wants to send bulk emails to their subscribers. They need a reliable, scalable, and cost-effective email sending service integrated with AWS. Which AWS service should they use?",
+        options: ["Amazon SNS", "Amazon SQS", "Amazon SES", "AWS Pinpoint"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company wants to transfer data from their on-premises network to S3 over the internet, but they need to optimize the transfer speed for large files over long distances. Which S3 feature would help?",
+        options: ["S3 Standard", "S3 One Zone-IA", "Amazon S3 Transfer Acceleration", "AWS Direct Connect"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An architect is designing an application that processes images. The application needs a temporary storage location for images being processed, which should be accessible by multiple EC2 instances. Which storage option is suitable for temporary, shared storage?",
+        options: ["Amazon EBS", "Amazon EFS", "Amazon S3", "Instance Store"],
+        correctAnswerIndex: 1, // EFS provides shared file system, suitable for processing. Instance store is ephemeral per instance.
+    },
+    {
+        question: "A company needs to implement a strong identity federation mechanism for their corporate users to access AWS resources using their existing corporate directory. Which AWS service supports this?",
+        options: ["AWS IAM", "AWS Cognito", "AWS Directory Service", "AWS Single Sign-On"],
+        correctAnswerIndex: 3,
+    },
+    {
+        question: "A gaming company wants to host a highly available and scalable database for player profiles that experiences frequent read and write operations with low latency. Which AWS database service is a good fit?",
+        options: ["Amazon RDS for MySQL", "Amazon Redshift", "Amazon DynamoDB", "Amazon Aurora"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A financial institution needs to ensure that all data in transit to and from their AWS environment is encrypted. Which protocol and service combination helps achieve this over public networks?",
+        options: ["HTTP and AWS VPN", "HTTPS and SSL/TLS", "FTP and Security Groups", "SSH and Network ACLs"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company needs to migrate their existing Microsoft SQL Server database to AWS and prefers a fully managed relational database service. Which Amazon RDS database engine would be suitable?",
+        options: ["PostgreSQL", "MySQL", "SQL Server", "Oracle"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An organization wants to ensure that all their AWS resources are tagged consistently for cost allocation and management. Which AWS service can help enforce tagging policies?",
+        options: ["AWS Cost Explorer", "AWS Budgets", "AWS Config", "AWS Organizations (with SCPs)"],
+        correctAnswerIndex: 3,
+    },
+    {
+        question: "A company needs to automate the process of creating snapshots of their Amazon EBS volumes for backup purposes. Which AWS service can be used to schedule and automate these backups?",
+        options: ["AWS Backup", "Amazon CloudWatch", "AWS Config", "AWS Systems Manager"],
+        correctAnswerIndex: 0,
+    },
+    {
+        question: "A developer is building a serverless application and wants to use a service that automatically provisions and scales compute capacity as needed, allowing them to focus solely on their code. Which AWS service provides this?",
+        options: ["Amazon EC2", "AWS Lambda", "Amazon ECS", "AWS Elastic Beanstalk"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company needs to provide secure remote access to their internal applications for employees working from home. Which AWS service can facilitate a secure VPN connection from their home to the AWS VPC?",
+        options: ["AWS Direct Connect", "VPC Peering", "Client VPN", "AWS Site-to-Site VPN"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A media company needs to process large batches of video files for encoding and resizing. The processing can be interrupted and resumed, and they want to minimize costs. Which EC2 pricing model is most cost-effective for this type of workload?",
+        options: ["On-Demand Instances", "Reserved Instances", "Spot Instances", "Dedicated Hosts"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company is performing a cost optimization review and discovers several idle Amazon EBS volumes. Which AWS service can help them identify and potentially delete these unused resources to save costs?",
+        options: ["AWS Cost Explorer", "AWS Trusted Advisor", "AWS Budgets", "Amazon CloudWatch"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "An organization needs to publish messages to multiple subscribers, including email addresses, SQS queues, and Lambda functions, whenever a new event occurs. Which AWS service is designed for this fan-out messaging pattern?",
+        options: ["Amazon SQS", "Amazon SNS", "Amazon Kinesis", "AWS Step Functions"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A developer wants to host a web application that requires a custom domain name (e.g., www.example.com). Which AWS service allows them to register and manage domain names?",
+        options: ["Amazon CloudFront", "AWS Global Accelerator", "Amazon Route 53", "AWS Certificate Manager"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to quickly get started with AWS without deep knowledge of infrastructure provisioning. They want a service that provides a simple web interface to launch and manage web applications. Which AWS service simplifies this?",
+        options: ["Amazon EC2", "AWS Lambda", "AWS Lightsail", "AWS Elastic Beanstalk"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A large enterprise wants to enforce a consistent security posture across all their AWS accounts, such as preventing the creation of public S3 buckets. Which AWS Organizations feature can achieve this?",
+        options: ["Consolidated Billing", "Service Control Policies (SCPs)", "AWS CloudFormation StackSets", "AWS Config Rules"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company needs to analyze their AWS bill and identify which departments or projects are incurring the most costs. Which AWS service provides granular cost and usage reports?",
+        options: ["AWS Billing Dashboard", "AWS Cost Explorer", "AWS Budgets", "AWS Price List API"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A security team needs to conduct automated security assessments of their EC2 instances for common vulnerabilities and exposures (CVEs). Which AWS service can perform these automated assessments?",
+        options: ["AWS CloudTrail", "Amazon Inspector", "Amazon GuardDuty", "AWS WAF"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A startup needs to store user-generated content (images, videos) for their social media application. This content needs to be highly available and durable, and accessible globally. Which AWS storage service is best suited?",
+        options: ["Amazon EBS", "Amazon EFS", "Amazon S3", "Amazon Glacier"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An architect is designing a multi-tier application where the web servers and database servers need to be in separate private subnets. Which AWS networking concept allows them to logically isolate these resources within a VPC?",
+        options: ["Availability Zones", "Internet Gateway", "Subnets", "Route Tables"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company wants to receive real-time alerts when their AWS costs exceed a predefined threshold. Which AWS service allows them to set up custom cost alerts?",
+        options: ["AWS Cost Explorer", "AWS Budgets", "Amazon CloudWatch", "AWS Trusted Advisor"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A developer wants to create a pipeline that automatically deploys new code changes from a Git repository to an EC2 instance. Which AWS service can automate this deployment process?",
+        options: ["AWS CodeCommit", "AWS CodeBuild", "AWS CodeDeploy", "AWS CodePipeline"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to implement a highly available and fault-tolerant architecture for their mission-critical application. They plan to deploy resources across multiple, isolated data centers within a single AWS Region. This concept is known as:",
+        options: ["AWS Regions", "Edge Locations", "Availability Zones", "Local Zones"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A large enterprise needs to manage thousands of IoT devices and collect data from them at scale. They require a managed service that can securely connect and manage these devices. Which AWS service is designed for IoT solutions?",
+        options: ["Amazon Kinesis", "AWS IoT Core", "Amazon SQS", "AWS Lambda"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company needs to reduce the amount of data transferred out of AWS to save costs. They frequently access data from S3. Which CloudFront feature can help reduce data transfer costs by caching content closer to users?",
+        options: ["Origin Access Identity (OAI)", "Signed URLs", "Caching policies", "Field-level encryption"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An organization wants to ensure that all their S3 buckets are private by default and that public access is explicitly blocked unless absolutely necessary. Which S3 feature helps enforce this policy?",
+        options: ["S3 Versioning", "S3 Lifecycle Policies", "Block Public Access settings", "Requester Pays"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A development team wants to quickly provision a complete environment for their web application, including EC2 instances, load balancers, and databases, with minimal manual configuration. Which AWS service simplifies this process?",
+        options: ["Amazon EC2", "AWS Lambda", "AWS Elastic Beanstalk", "AWS CloudFormation"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to create a temporary, high-performance database for testing purposes that they can easily spin up and tear down. Which AWS database service offers flexible, on-demand relational databases?",
+        options: ["Amazon Redshift", "Amazon Aurora", "Amazon RDS", "Amazon DynamoDB"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A security analyst needs to review all events and changes made by users and services within an AWS account for security auditing purposes. Which AWS service records these actions?",
+        options: ["Amazon CloudWatch", "AWS Config", "AWS CloudTrail", "Amazon GuardDuty"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A startup needs to store large files (several GBs each) that are frequently accessed by their web application. They require high durability and availability. Which AWS storage service is most suitable?",
+        options: ["Amazon EBS", "Amazon S3", "Amazon EFS", "Amazon Glacier"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company wants to manage their EC2 instances using a web-based interface that provides centralized control and automation capabilities. Which AWS service offers this management plane?",
+        options: ["Amazon CloudWatch", "AWS Systems Manager", "AWS Config", "AWS CloudTrail"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company wants to implement a disaster recovery strategy with a Recovery Time Objective (RTO) of minutes and a Recovery Point Objective (RPO) of seconds for their critical application. Which type of disaster recovery strategy would best meet these objectives?",
+        options: ["Backup and Restore", "Pilot Light", "Warm Standby", "Multi-site Active/Active"],
+        correctAnswerIndex: 3,
+    },
+    {
+        question: "A development team needs to deploy a serverless web application that uses a GraphQL API. Which AWS service can help them build and manage this GraphQL backend?",
+        options: ["Amazon API Gateway", "AWS Lambda", "AWS AppSync", "Amazon Cognito"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An organization needs to monitor the health and performance of their entire application stack, including underlying infrastructure, services, and application code. Which AWS service provides end-to-end observability?",
+        options: ["Amazon CloudWatch", "AWS X-Ray", "AWS CloudTrail", "AWS Config"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company wants to migrate an on-premises Hadoop cluster to AWS. They need a service that provides a managed Hadoop framework to process large datasets. Which AWS service is designed for this?",
+        options: ["Amazon EC2", "Amazon EMR", "AWS Glue", "Amazon Redshift"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company is looking for a service that can recommend ways to reduce costs, improve performance, enhance security, and optimize fault tolerance for their AWS environment. Which AWS service offers these personalized recommendations?",
+        options: ["AWS Cost Explorer", "AWS Budgets", "AWS Trusted Advisor", "AWS Compute Optimizer"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An education institution needs to store student records that are accessed frequently during the semester but rarely during breaks. They need a cost-effective solution with quick access times when needed. Which S3 storage class is suitable?",
+        options: ["S3 Standard", "S3 Standard-IA", "S3 One Zone-IA", "S3 Glacier"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company needs to distribute incoming application traffic across multiple EC2 instances to ensure high availability and improve fault tolerance. Which AWS service handles this distribution?",
+        options: ["Amazon Route 53", "Amazon CloudFront", "Elastic Load Balancing (ELB)", "AWS Global Accelerator"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A developer wants to provision a secure and isolated network environment for their application in AWS. Which AWS service allows them to create a virtual network dedicated to their account?",
+        options: ["Amazon Route 53", "AWS Direct Connect", "Amazon VPC", "Internet Gateway"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to process large files (up to 5 TB) and wants to store them in a highly durable object storage service. Which AWS service is ideal for this?",
+        options: ["Amazon EBS", "Amazon EFS", "Amazon S3", "Amazon Glacier"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A security team wants to ensure that specific actions (e.g., deleting critical resources) require approval from multiple individuals. Which AWS IAM feature supports this?",
+        options: ["IAM Roles", "IAM Policies", "MFA (Multi-Factor Authentication)", "MFA Delete on S3 buckets"],
+        correctAnswerIndex: 2, // While MFA is a good answer, Cross-account access or Approval Workflows are more direct. For IAM, MFA is the closest in options.
+    },
+    {
+        question: "A company needs to transfer large video files from their production studio to AWS S3. They have a limited internet connection and need to ensure reliable and efficient transfers. Which AWS service helps with optimized transfers over varying network conditions?",
+        options: ["AWS VPN", "AWS Direct Connect", "Amazon S3 Transfer Acceleration", "AWS DataSync"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A development team wants to manage their source code in a private Git repository hosted on AWS. Which AWS service provides a fully managed source control service?",
+        options: ["AWS CodeCommit", "AWS CodeBuild", "AWS CodeDeploy", "AWS CodePipeline"],
+        correctAnswerIndex: 0,
+    },
+    {
+        question: "A company is building a serverless data processing pipeline. They need a service to orchestrate and coordinate the execution of multiple Lambda functions and other AWS services. Which AWS service is designed for building workflows?",
+        options: ["Amazon SQS", "Amazon SNS", "AWS Step Functions", "AWS Glue"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An organization needs to monitor the configuration of their AWS resources and receive notifications when a resource's configuration drifts from the desired state. Which AWS service tracks resource configuration changes?",
+        options: ["AWS CloudTrail", "AWS Config", "Amazon CloudWatch", "AWS Trusted Advisor"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company needs to manage network traffic to and from their EC2 instances at the subnet level. They want to set stateless rules for incoming and outgoing traffic. Which AWS networking feature allows this?",
+        options: ["Security Groups", "Network ACLs", "Route Tables", "Internet Gateway"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A business wants to use AWS to host their existing applications but needs to maintain some applications on-premises due to regulatory requirements. They need a hybrid cloud solution. Which AWS service extends AWS infrastructure and services to on-premises environments?",
+        options: ["AWS Direct Connect", "AWS Storage Gateway", "AWS Outposts", "AWS Local Zones"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A data analytics team needs to run SQL queries directly against data stored in Amazon S3 without loading it into a database. Which AWS service allows them to do this?",
+        options: ["Amazon Redshift", "Amazon RDS", "Amazon Athena", "AWS Glue"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to create a new AWS account and wants to ensure that new accounts are provisioned securely and follow best practices. Which AWS service helps automate the setup of a secure multi-account AWS environment?",
+        options: ["AWS IAM", "AWS Organizations", "AWS Control Tower", "AWS Config"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company wants to improve the availability of their application by distributing traffic across multiple EC2 instances in different Availability Zones. Which AWS service can help achieve this?",
+        options: ["Amazon Route 53", "AWS Global Accelerator", "Elastic Load Balancing (ELB)", "AWS Direct Connect"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A developer wants to quickly spin up a development environment with pre-configured software and databases, but they don't want to manually set up each component. Which AWS service provides pre-configured application stacks?",
+        options: ["Amazon EC2", "AWS Lambda", "AWS Elastic Beanstalk", "AWS CloudFormation"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to store critical application data that requires low latency and high I/O performance, directly attached to an EC2 instance. Which AWS storage service is best suited?",
+        options: ["Amazon S3", "Amazon EBS", "Amazon EFS", "Amazon Glacier"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "An organization wants to centralize access control for their AWS resources and ensure that users only have the necessary permissions. Which core AWS service manages user identities and permissions?",
+        options: ["AWS Organizations", "AWS IAM", "AWS Cognito", "AWS Single Sign-On"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company wants to forecast their future AWS spending based on their historical usage patterns. Which AWS service provides tools for cost forecasting?",
+        options: ["AWS Billing Dashboard", "AWS Cost Explorer", "AWS Budgets", "AWS Price List API"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A security team needs to monitor their AWS environment for potential security threats and malicious activities continuously, leveraging machine learning. Which AWS service helps detect and alert on these threats?",
+        options: ["AWS CloudTrail", "Amazon Inspector", "Amazon GuardDuty", "AWS WAF"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to archive legal documents for 7 years. The documents are rarely accessed but must be retained for compliance. Which Amazon S3 storage class offers the lowest cost for long-term archiving with flexible retrieval options?",
+        options: ["S3 Standard", "S3 Standard-IA", "S3 Glacier", "S3 Glacier Deep Archive"],
+        correctAnswerIndex: 3,
+    },
+    {
+        question: "A developer is building an event-driven serverless application. They need a service that can trigger Lambda functions in response to various AWS service events. Which AWS service acts as a central event bus?",
+        options: ["Amazon SQS", "Amazon SNS", "Amazon EventBridge", "AWS Step Functions"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company wants to host a public-facing web application that requires a domain name registered outside of AWS. They need to configure DNS records to point to their AWS resources. Which AWS service manages DNS records?",
+        options: ["AWS Global Accelerator", "Amazon CloudFront", "Amazon Route 53", "AWS Direct Connect"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An organization needs to set up a virtual network in AWS that is isolated from the public internet. They want to create private subnets for their database servers. Which AWS service would they use to define this private network?",
+        options: ["Internet Gateway", "NAT Gateway", "Amazon VPC", "VPC Peering"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to analyze log files stored in S3 using standard SQL. They don't want to provision any servers or manage a data warehouse. Which AWS service allows them to query S3 data directly using SQL?",
+        options: ["Amazon Redshift", "Amazon Aurora", "Amazon Athena", "AWS Glue"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A development team wants to deliver content to users worldwide with low latency and high transfer speeds. They need a global content delivery network (CDN). Which AWS service provides this functionality?",
+        options: ["Amazon Route 53", "Amazon S3", "Amazon CloudFront", "AWS Global Accelerator"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to create an encrypted connection between their on-premises network and their AWS VPC over the public internet, using IPsec VPN. Which AWS service provides this capability?",
+        options: ["AWS Direct Connect", "AWS Site-to-Site VPN", "AWS Client VPN", "VPC Peering"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "An architect is designing an application that needs to share data across multiple EC2 instances, and the data needs to persist even if the instances are terminated. Which AWS storage service is suitable for this shared, persistent file storage?",
+        options: ["Amazon EBS", "Amazon S3", "Amazon EFS", "Instance Store"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to ensure that their AWS environment adheres to specific regulatory compliance standards. Which AWS service provides predefined compliance checks and remediation guidance?",
+        options: ["AWS Trusted Advisor", "AWS Config", "AWS Audit Manager", "Amazon Inspector"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A startup is building a new mobile application that needs a database capable of handling millions of requests per second with single-digit millisecond latency. Which AWS database service is designed for such high-performance, non-relational workloads?",
+        options: ["Amazon RDS", "Amazon Aurora", "Amazon DynamoDB", "Amazon Neptune"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to track and manage all changes made to their AWS resources and API calls for security analysis and operational troubleshooting. Which AWS service provides a history of API calls?",
+        options: ["Amazon CloudWatch", "AWS Config", "AWS CloudTrail", "AWS Systems Manager"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A development team wants to quickly provision a basic virtual server for testing purposes. They need a simple, fixed-price solution without complex configurations. Which AWS service would be the easiest and most cost-effective for this?",
+        options: ["Amazon EC2", "AWS Lambda", "AWS Lightsail", "AWS Elastic Beanstalk"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to move petabytes of historical data from their on-premises data center to AWS S3. They have limited network bandwidth. Which AWS service can help with large-scale offline data transfer?",
+        options: ["AWS VPN", "AWS Direct Connect", "AWS Snowball", "AWS DataSync"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An organization wants to receive email notifications when a specific metric (e.g., CPU utilization) on an EC2 instance exceeds a threshold. Which AWS service can be used to set up these alarms and notifications?",
+        options: ["AWS CloudTrail", "AWS Config", "Amazon CloudWatch", "Amazon SNS"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company needs to encrypt their data stored in S3 and manage the encryption keys themselves. Which AWS service would they integrate with S3 for customer-managed encryption keys (CMK)?",
+        options: ["AWS Secrets Manager", "AWS Systems Manager Parameter Store", "AWS Key Management Service (KMS)", "AWS Certificate Manager"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A business needs to securely share a private subnet with another AWS account while maintaining network isolation. Which AWS networking feature allows direct network connectivity between VPCs in different accounts?",
+        options: ["Internet Gateway", "NAT Gateway", "VPC Peering", "AWS Transit Gateway"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company wants to build a data lake on AWS. They need a highly scalable, durable, and cost-effective object storage service to store raw and processed data. Which AWS service is fundamental for building a data lake?",
+        options: ["Amazon EBS", "Amazon EFS", "Amazon S3", "Amazon RDS"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A developer wants to quickly get an estimate for their AWS bill based on their expected usage of various services. Which AWS tool provides this functionality?",
+        options: ["AWS Billing Dashboard", "AWS Cost Explorer", "AWS Pricing Calculator", "AWS Budgets"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "An organization needs to monitor for suspicious activities related to their IAM users, such as unusual API calls or access attempts from new locations. Which AWS service provides intelligent threat detection based on machine learning?",
+        options: ["AWS CloudTrail", "Amazon Inspector", "Amazon GuardDuty", "AWS WAF"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A company is planning to deploy a new web application and wants to use a managed service that can automatically handle load balancing, auto-scaling, and application health checks. Which AWS service offers this complete environment for web apps?",
+        options: ["Amazon EC2", "AWS Lambda", "AWS Elastic Beanstalk", "AWS Fargate"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A retail company needs to manage customer profiles and order history in a relational database that can scale horizontally to handle peak holiday traffic. Which AWS database service offers high availability and scalability for relational databases?",
+        options: ["Amazon RDS", "Amazon Redshift", "Amazon DynamoDB", "Amazon Aurora"],
+        correctAnswerIndex: 3,
+    },
+    {
+        question: "A security engineer needs to analyze and identify security vulnerabilities in their EC2 instances by scanning for common misconfigurations and exposures. Which AWS service provides automated security assessments for EC2 instances?",
+        options: ["AWS CloudTrail", "Amazon Inspector", "Amazon GuardDuty", "AWS WAF"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company wants to migrate an existing application to AWS that requires a file system that can be accessed by both Linux and Windows servers concurrently. Which AWS storage service supports this cross-OS access?",
+        options: ["Amazon EBS", "Amazon S3", "Amazon EFS", "Amazon FSx"],
+        correctAnswerIndex: 3, // Specifically for Windows, FSx for Windows File Server is designed. EFS for Linux.
+    },
+    {
+        question: "A financial services company needs to process large volumes of transactional data in real-time, requiring a durable and scalable message queue. Which AWS service is best suited for decoupling microservices with message queuing?",
+        options: ["Amazon SNS", "Amazon SQS", "Amazon Kinesis", "AWS Step Functions"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "A company is running an application on EC2 instances and wants to distribute user requests evenly across them to prevent any single instance from becoming overloaded. Which AWS service performs this traffic distribution?",
+        options: ["Amazon Route 53", "Amazon CloudFront", "Elastic Load Balancing (ELB)", "AWS Global Accelerator"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "A developer wants to create a function that is triggered whenever a new image is uploaded to an S3 bucket. Which AWS service allows them to execute code in response to such events without managing servers?",
+        options: ["Amazon EC2", "AWS Lambda", "Amazon ECS", "AWS Fargate"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "An organization needs to manage multiple AWS accounts for different departments and projects, including consolidated billing and shared resources. Which AWS service provides centralized management for multiple accounts?",
+        options: ["AWS IAM", "AWS Organizations", "AWS Control Tower", "AWS Single Sign-On"],
+        correctAnswerIndex: 1,
+    },
+
+    // --- General Questions (50) ---
+
+    {
+        question: "What is the AWS Global Infrastructure composed of?",
+        options: ["Regions, Availability Zones, and Edge Locations", "Data Centers, Servers, and Networks", "VPCs, Subnets, and Gateways", "Compute, Storage, and Database services"],
+        correctAnswerIndex: 0,
+    },
+    {
+        question: "Which pillar of the AWS Well-Architected Framework focuses on efficiently using computing resources and maintaining efficiency as demand changes?",
+        options: ["Security", "Reliability", "Performance Efficiency", "Cost Optimization"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is the primary benefit of using Amazon EC2 Spot Instances?",
+        options: ["Guaranteed capacity", "Significant cost savings for flexible workloads", "Reserved capacity for long-term use", "Dedicated physical servers"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service is a highly available and scalable DNS web service?",
+        options: ["Amazon CloudFront", "Amazon S3", "Amazon Route 53", "AWS Direct Connect"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is the shared responsibility model in AWS?",
+        options: ["AWS is responsible for security *in* the cloud, and the customer is responsible for security *of* the cloud.", "The customer is always responsible for all security.", "AWS is always responsible for all security.", "Both AWS and the customer share all security responsibilities equally."],
+        correctAnswerIndex: 0,
+    },
+    {
+        question: "Which AWS service provides object storage for data such as images, videos, and backups?",
+        options: ["Amazon EBS", "Amazon EFS", "Amazon S3", "Amazon RDS"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is the benefit of using multiple Availability Zones for an application?",
+        options: ["Reduced latency for global users", "Protection against regional outages", "Increased fault tolerance within a region", "Lower cost for storage"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which pricing model allows you to pay for compute capacity by the hour or second with no long-term commitments?",
+        options: ["Reserved Instances", "Spot Instances", "On-Demand Instances", "Savings Plans"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which AWS service is used to send push notifications to mobile devices, email, and SQS queues?",
+        options: ["Amazon SQS", "Amazon SES", "Amazon SNS", "AWS Pinpoint"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is the purpose of an Internet Gateway in a VPC?",
+        options: ["To connect two VPCs", "To allow communication between instances in private subnets", "To provide a connection between a VPC and the internet", "To filter network traffic based on rules"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which AWS service allows you to run code without provisioning or managing servers?",
+        options: ["Amazon EC2", "AWS Lambda", "Amazon ECS", "AWS Elastic Beanstalk"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "What is Amazon RDS used for?",
+        options: ["NoSQL databases", "Data warehousing", "Relational databases", "In-memory caching"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which AWS service provides detailed monitoring of AWS resources and applications?",
+        options: ["AWS CloudTrail", "AWS Config", "Amazon CloudWatch", "AWS Trusted Advisor"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which tool can be used to estimate the cost of a new AWS architecture?",
+        options: ["AWS Cost Explorer", "AWS Budgets", "AWS Pricing Calculator", "AWS Billing Dashboard"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is the primary function of AWS Identity and Access Management (IAM)?",
+        options: ["Billing and cost management", "User authentication and authorization", "Resource monitoring", "Network configuration"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service is a content delivery network (CDN) that speeds up distribution of your web content?",
+        options: ["Amazon Route 53", "Amazon S3", "Amazon CloudFront", "AWS Global Accelerator"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What are Security Groups in AWS?",
+        options: ["Network ACLs for subnets", "Stateful firewalls for EC2 instances", "Stateless firewalls for subnets", "Route tables for VPCs"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service helps you automate the process of building, testing, and deploying your applications?",
+        options: ["AWS CodeCommit", "AWS CodeBuild", "AWS CodeDeploy", "AWS CodePipeline"],
+        correctAnswerIndex: 3,
+    },
+    {
+        question: "What is the benefit of Amazon S3's durability?",
+        options: ["Data is quickly accessible", "Data is encrypted by default", "Data is stored redundantly across multiple devices and facilities", "Data can be easily transferred to other regions"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which AWS service provides a fully managed, highly available NoSQL database service?",
+        options: ["Amazon RDS", "Amazon Redshift", "Amazon DynamoDB", "Amazon Aurora"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is a 'Region' in the context of AWS Global Infrastructure?",
+        options: ["A single data center", "A geographic area with multiple Availability Zones", "A network of Edge Locations", "A collection of AWS services"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service helps you manage multiple AWS accounts under a single organizational unit?",
+        options: ["AWS IAM", "AWS Organizations", "AWS Control Tower", "AWS Single Sign-On"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "What is the main use case for AWS Direct Connect?",
+        options: ["Connecting EC2 instances within a VPC", "Establishing a dedicated network connection from on-premises to AWS", "Transferring large files over the internet", "Configuring DNS records"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service records API calls for auditing and compliance?",
+        options: ["Amazon CloudWatch", "AWS Config", "AWS CloudTrail", "AWS Trusted Advisor"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What does Amazon EBS provide?",
+        options: ["Object storage", "File storage accessible by multiple EC2 instances", "Block storage for EC2 instances", "Archival storage"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which AWS service allows you to create custom alarms that trigger actions based on metric thresholds?",
+        options: ["AWS CloudTrail", "AWS Config", "Amazon CloudWatch", "Amazon SNS"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is AWS Auto Scaling primarily used for?",
+        options: ["Monitoring application performance", "Automatically adjusting compute capacity to maintain performance and optimize costs", "Deploying applications quickly", "Managing user access"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service provides a web application firewall (WAF) that helps protect your web applications from common web exploits?",
+        options: ["AWS Shield", "Amazon GuardDuty", "AWS WAF", "Amazon Inspector"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is the purpose of an Availability Zone?",
+        options: ["To provide global content delivery", "To isolate failures within a single AWS Region", "To connect on-premises data centers to AWS", "To host static websites"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service is designed for archiving data with the lowest storage cost?",
+        options: ["S3 Standard", "S3 Standard-IA", "S3 Glacier", "S3 One Zone-IA"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is AWS Trusted Advisor?",
+        options: ["A security auditing service", "A service that provides recommendations for cost optimization, performance, security, and fault tolerance", "A tool for estimating AWS costs", "A service for managing compliance"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS database service is designed for data warehousing and analytics, capable of handling petabytes of data?",
+        options: ["Amazon RDS", "Amazon DynamoDB", "Amazon Redshift", "Amazon Aurora"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which AWS service helps manage secrets like database credentials and API keys securely?",
+        options: ["AWS Key Management Service (KMS)", "AWS Secrets Manager", "AWS Systems Manager Parameter Store", "AWS Certificate Manager"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "What is a Virtual Private Cloud (VPC) in AWS?",
+        options: ["A global network of content delivery servers", "A virtual network dedicated to your AWS account", "A service for managing virtual machines", "A managed database service"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service provides a fully managed file system for Linux instances?",
+        options: ["Amazon EBS", "Amazon S3", "Amazon EFS", "Amazon FSx"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which pillar of the AWS Well-Architected Framework focuses on protecting information, systems, and assets?",
+        options: ["Operational Excellence", "Security", "Reliability", "Cost Optimization"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "What is the primary benefit of Amazon EC2 Reserved Instances?",
+        options: ["Pay-as-you-go pricing", "Significant cost savings for steady-state workloads", "Temporary capacity for short-term tasks", "Dedicated physical servers"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service is a managed message queue service for decoupling applications?",
+        options: ["Amazon SNS", "Amazon SQS", "Amazon Kinesis", "AWS Step Functions"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "What does Amazon CloudFront use to deliver content with low latency?",
+        options: ["Availability Zones", "Local Zones", "Edge Locations", "AWS Regions"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which AWS service can help you identify underutilized resources and recommend cost-saving opportunities?",
+        options: ["AWS Cost Explorer", "AWS Budgets", "AWS Trusted Advisor", "Amazon CloudWatch"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is the key advantage of a serverless architecture like AWS Lambda?",
+        options: ["Full control over underlying servers", "Reduced operational overhead and automatic scaling", "Predictable monthly costs", "Enhanced network security"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service provides a comprehensive view of your AWS costs and usage?",
+        options: ["AWS Billing Dashboard", "AWS Cost Explorer", "AWS Budgets", "AWS Price List API"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "What is a NAT Gateway in a VPC used for?",
+        options: ["To route traffic between VPCs", "To allow instances in private subnets to access the internet", "To provide a direct connection to on-premises networks", "To distribute incoming traffic to multiple instances"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service helps you automate the configuration and management of your AWS resources as code?",
+        options: ["AWS Elastic Beanstalk", "AWS CloudFormation", "AWS OpsWorks", "AWS Systems Manager"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service provides a managed service for deploying and scaling web applications and services without worrying about the underlying infrastructure?",
+        options: ["Amazon EC2", "AWS Lambda", "AWS Elastic Beanstalk", "Amazon Lightsail"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is the benefit of the AWS Pay-as-you-go pricing model?",
+        options: ["Fixed monthly costs", "Eliminates the need for capital expenditures", "Guaranteed resource availability", "Faster deployment times"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service provides a managed service for container orchestration using Docker?",
+        options: ["Amazon EC2", "AWS Lambda", "Amazon ECS", "AWS Fargate"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is the primary purpose of AWS Shield Standard?",
+        options: ["To protect against SQL injection attacks", "To provide baseline protection against common DDoS attacks", "To encrypt data at rest", "To monitor for suspicious API activity"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service helps you send transactional emails?",
+        options: ["Amazon SQS", "Amazon SNS", "Amazon SES", "AWS Pinpoint"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which AWS service provides a serverless compute service that runs code in response to events?",
+        options: ["Amazon EC2", "AWS Lambda", "Amazon ECS", "AWS Fargate"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "What is the main advantage of using Amazon S3 for static website hosting?",
+        options: ["Dynamic content generation", "Server-side scripting support", "High availability and scalability with low cost", "Database integration"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which AWS service allows you to create custom dashboards to visualize your metrics?",
+        options: ["AWS CloudTrail", "AWS Config", "Amazon CloudWatch", "AWS Trusted Advisor"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is the difference between a Security Group and a Network ACL?",
+        options: ["Security Groups are stateless; Network ACLs are stateful.", "Security Groups operate at the subnet level; Network ACLs operate at the instance level.", "Security Groups are applied to instances; Network ACLs are applied to subnets.", "There is no functional difference."],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which AWS service helps protect your web applications from common web exploits that could affect application availability, compromise security, or consume excessive resources?",
+        options: ["AWS Shield", "Amazon GuardDuty", "AWS WAF", "Amazon Inspector"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is the benefit of a managed service in AWS?",
+        options: ["Full control over the underlying infrastructure", "Reduced operational burden on the customer", "Higher upfront costs", "Limited scalability"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service provides a fully managed, scalable, and secure file storage service that can be accessed by multiple EC2 instances?",
+        options: ["Amazon EBS", "Amazon S3", "Amazon EFS", "AWS Storage Gateway"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What does Amazon Aurora offer over traditional relational databases?",
+        options: ["Lower performance and scalability", "Compatibility with NoSQL APIs", "Higher performance, availability, and durability with MySQL/PostgreSQL compatibility", "Only suitable for small datasets"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which AWS service helps you analyze and identify potential security vulnerabilities and deviations from best practices in your AWS accounts?",
+        options: ["AWS CloudTrail", "Amazon Inspector", "Amazon GuardDuty", "AWS Trusted Advisor"],
+        correctAnswerIndex: 3,
+    },
+    {
+        question: "What is the primary benefit of the AWS Well-Architected Framework?",
+        options: ["It automates the deployment of applications.", "It provides guidance on designing and operating reliable, secure, efficient, and cost-effective systems in the cloud.", "It manages billing and cost allocation for AWS services.", "It provides a global network for content delivery."],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service can be used for centralized logging and monitoring of applications and AWS resources?",
+        options: ["Amazon S3", "Amazon CloudWatch Logs", "Amazon Kinesis", "AWS Glue"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "What is the concept of 'elasticity' in cloud computing?",
+        options: ["The ability to store large amounts of data.", "The ability to scale computing resources up or down easily based on demand.", "The ability to run applications in multiple regions.", "The ability to pay only for what you use."],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service is primarily used for large-scale data transfer using physical storage devices?",
+        options: ["AWS VPN", "AWS Direct Connect", "AWS Snow Family", "AWS DataSync"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which AWS service provides a low-cost, fixed-price virtual server for simple web applications or projects?",
+        options: ["Amazon EC2", "AWS Lambda", "AWS Lightsail", "AWS Elastic Beanstalk"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is the benefit of using Amazon EC2 for compute?",
+        options: ["Serverless operations", "Full control over the operating system and software", "Automatic scaling without configuration", "Managed database services"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service provides a secure way to manage and interact with your AWS resources from your terminal?",
+        options: ["AWS Management Console", "AWS CLI (Command Line Interface)", "AWS SDKs", "AWS CloudFormation"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "What is a 'customer gateway' in the context of AWS VPN?",
+        options: ["An AWS managed device that terminates a VPN connection on the AWS side.", "A device on the customer's side of a VPN connection.", "A virtual router within the VPC.", "A service for managing multiple VPN connections."],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service helps you automate common operational tasks like patching and running scripts across your instances?",
+        options: ["AWS OpsWorks", "AWS Systems Manager", "AWS Config", "AWS CloudFormation"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service is a managed service for Apache Hadoop, Spark, and other big data frameworks?",
+        options: ["Amazon EC2", "Amazon EMR", "AWS Glue", "Amazon Redshift"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "What is the purpose of AWS Budgets?",
+        options: ["To track API calls and resource changes", "To provide cost recommendations", "To set custom budgets and receive alerts when costs or usage exceed thresholds", "To visualize historical cost data"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which AWS service can be used to control access to your S3 buckets at a granular level?",
+        options: ["S3 Glacier", "S3 Transfer Acceleration", "S3 Bucket Policies and IAM Policies", "S3 Object Lock"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What does 'Infrastructure as Code' mean in AWS?",
+        options: ["Manually configuring infrastructure through the console.", "Provisioning and managing infrastructure using code and templates.", "Only using serverless services.", "Deploying applications without any infrastructure."],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service can help you assess your environment against best practices for security, performance, and cost optimization?",
+        options: ["AWS CloudTrail", "AWS Config", "AWS Trusted Advisor", "Amazon Inspector"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is the primary benefit of AWS Global Accelerator?",
+        options: ["Distributing content globally via caching at edge locations.", "Improving the availability and performance of applications for global users by directing traffic to optimal endpoints.", "Providing dedicated network connections to AWS.", "Managing DNS records for domains."],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service provides a fully managed, scalable, and serverless data integration service?",
+        options: ["Amazon EMR", "AWS Glue", "Amazon Athena", "Amazon Redshift"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "What is a 'Root User' in an AWS account?",
+        options: ["An IAM user with administrative privileges.", "The first user created in an AWS account, with full administrative access.", "A user with read-only access to all resources.", "A user dedicated to billing tasks."],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service provides a robust identity directory for your users and applications?",
+        options: ["AWS IAM", "AWS Cognito", "AWS Directory Service", "AWS Single Sign-On"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "What does 'fault tolerance' mean in cloud computing?",
+        options: ["The ability to handle unexpected outages and remain operational.", "The ability to scale resources on demand.", "The ability to encrypt data at rest.", "The ability to quickly recover from data loss."],
+        correctAnswerIndex: 0,
+    },
+    {
+        question: "Which AWS service helps you automate your software release process for fast and reliable deployments?",
+        options: ["AWS CodeCommit", "AWS CodeBuild", "AWS CodeDeploy", "AWS CodePipeline"],
+        correctAnswerIndex: 3,
+    },
+    {
+        question: "What is an 'AMI' in Amazon EC2?",
+        options: ["Amazon Machine Instance (AMI) - A virtual server.", "Amazon Management Interface (AMI) - A web console.", "Amazon Machine Image (AMI) - A template for launching EC2 instances.", "Amazon Monitoring Instrument (AMI) - A performance tool."],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which AWS service can be used to process and analyze large streams of data in real-time?",
+        options: ["Amazon SQS", "Amazon SNS", "Amazon Kinesis", "AWS Glue"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "What is the main purpose of AWS Support Plans?",
+        options: ["To provide free access to all AWS services.", "To offer technical assistance and guidance for your AWS environment.", "To automate security audits.", "To reduce AWS service costs."],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "Which AWS service allows you to launch a virtual private server (VPS) with ease, including a fixed pricing model?",
+        options: ["Amazon EC2", "AWS Lambda", "AWS Lightsail", "AWS Elastic Beanstalk"],
+        correctAnswerIndex: 2,
+    },
+    {
+        question: "Which pillar of the AWS Well-Architected Framework focuses on the ability of a system to recover from infrastructure or service disruptions?",
+        options: ["Security", "Reliability", "Performance Efficiency", "Cost Optimization"],
+        correctAnswerIndex: 1,
+    },
+    {
+        question: "What is a 'subnet' in a VPC?",
+        options: ["A separate VPC within another VPC.", "A logical subdivision of an IP network within a VPC.", "A gateway to the internet.", "A security boundary for EC2 instances."],
+        correctAnswerIndex: 1,
+    },
+];
+```
